@@ -41,9 +41,9 @@ class OrderFragment : Fragment() {
     private fun initial() {
         val recyclerView = binding.recyclerViewHome
         recyclerView.layoutManager = GridLayoutManager(requireContext(), 2)
-        adapter = OrderAdapter(clickListener = { item ->
+        adapter = OrderAdapter(clickListener = { cart ->
             val bundle = Bundle()
-            bundle.putParcelable("item", item)
+            bundle.putParcelable("cart", cart)
             findNavController().navigate(R.id.action_navigation_dashboard_to_itemFragment,bundle)
         })
         recyclerView.adapter = adapter

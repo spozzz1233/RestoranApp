@@ -2,6 +2,7 @@ package com.example.restoranapp.ui.cart
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,6 +15,7 @@ import com.example.autorus.util.CartSave
 import com.example.restoranapp.R
 import com.example.restoranapp.databinding.FragmentHomeBinding
 import com.example.restoranapp.databinding.FragmentOrderBinding
+import com.example.restoranapp.domain.model.cart
 import com.example.restoranapp.domain.model.item
 
 class CartFragment : Fragment() {
@@ -47,9 +49,12 @@ class CartFragment : Fragment() {
             cartAdapter.updateData()
             checkFavorite()
         }
-        binding.back.setOnClickListener{
-            findNavController().popBackStack()
+        var a = 0
+        for(c in cart){
+            a += c.price
+
         }
+        binding.price.text = a.toString()
     }
 
     private fun initial() {
@@ -62,7 +67,7 @@ class CartFragment : Fragment() {
 
     }
     private fun checkFavorite(){
-        if(item.isEmpty()){
+        if(cart.isEmpty()){
             binding.toOrder.visibility = View.VISIBLE
             binding.placeholder.visibility = View.VISIBLE
             binding.price.visibility = View.GONE

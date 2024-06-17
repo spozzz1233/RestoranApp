@@ -10,6 +10,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.example.restoranapp.R
 import com.example.restoranapp.domain.model.MenuItem
+import com.example.restoranapp.domain.model.cart
 import com.example.restoranapp.domain.model.item
 
 
@@ -24,10 +25,10 @@ class CartAdapter(
         return HistoryViewHolder(cardMusicView)
     }
 
-    override fun getItemCount(): Int = item.size
+    override fun getItemCount(): Int = cart.size
 
     override fun onBindViewHolder(holder: HistoryViewHolder, position: Int) {
-        val historyCart = item[position]
+        val historyCart = cart[position]
         holder.bind(historyCart)
         holder.itemView.setOnClickListener {
             clickListener.onClick(historyCart)

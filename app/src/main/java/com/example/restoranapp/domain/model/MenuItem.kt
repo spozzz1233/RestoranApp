@@ -13,3 +13,6 @@ data class MenuItem(
 ): Parcelable
 
 var item = ArrayList<MenuItem>()
+
+
+var cart = ArrayList<MenuItem>()

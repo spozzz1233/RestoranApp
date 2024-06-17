@@ -37,28 +37,26 @@ class ItemFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         cartSave = CartSave(requireContext())
-        val item = arguments?.getParcelable<MenuItem>("item")
+        val cart = arguments?.getParcelable<MenuItem>("cart")
 
         binding.addCart.setOnClickListener {
-            if (item != null) {
-                cartSave.saveCartHistory(item)
-            }
-            if (item != null) {
-                Toast.makeText(requireContext(), "${item.itemName} добавлен в корзину", Toast.LENGTH_SHORT)
+            if (cart != null) {
+                cartSave.saveCartHistory(cart)
+                Toast.makeText(requireContext(), "${cart.itemName} добавлен в корзину", Toast.LENGTH_SHORT)
                     .show()
             }
         }
         binding.back.setOnClickListener {
             findNavController().popBackStack()
         }
-        if (item != null) {
+        if (cart != null) {
             Glide.with(requireContext())
-                .load(item.image)
+                .load(cart.image)
                 .transform(RoundedCorners(8))
                 .into(binding.cover)
-            binding.priceInt.text = item.price.toString()
-            binding.partName.text = item.itemName
-            binding.descriptionName.text = item.description
+            binding.priceInt.text = cart.price.toString()
+            binding.partName.text = cart.itemName
+            binding.descriptionName.text = cart.description
         }
 
     }
